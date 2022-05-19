@@ -14,10 +14,10 @@
           {{ props.row.quantity }}
         </b-table-column>
 
-        <b-table-column label="จัดการ">
+        <b-table-column label="จัดการ" v-slot="props">
           <div class="buttons">
-            <b-button type="is-warning" icon-right="edit" />
-            <b-button type="is-danger" icon-right="trash-alt" />
+            <b-button type="is-warning" icon-right="edit" @click="toggleEdit(props.row)" />
+            <b-button type="is-danger" icon-right="trash-alt" @click="confirmDelete(props.row)" />
           </div>
         </b-table-column>
 
@@ -43,6 +43,21 @@ export default {
     products: {
       type: Array,
       required: true,
+    },
+  },
+
+  methods: {
+    toggleEdit(product) {
+      this.$emit('toggleEdit:product', product)
+    },
+
+    confirmDelete(product) {
+      this.$buefy.dialog.confirm({
+        title: 'ลบสินค้า ',
+        message: `คุณต้องการลบสินค้า: <b>${product.name}</b> ?`,
+        type: 'is-danger',
+        onConfirm: () => this.$emit('delete:product', product.id),
+      })
     },
   },
 }
