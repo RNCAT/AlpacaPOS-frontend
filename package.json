@@ -1,0 +1,21 @@
+{
+  "name": "frontend-buefy",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "buefy": "^0.9.20",
+    "vue": "2.6.14",
+    "vue-router": "3.5.3"
+  },
+  "devDependencies": {
+    "vite": "^2.9.7",
+    "vite-plugin-vue2": "^2.0.0",
+    "vue-template-compiler": "^2.6.14"
+  }
+}

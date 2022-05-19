@@ -1,0 +1,29 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+const BASE_URL = import.meta.env.BASE_URL
+
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/',
+    component: () => import('@/views/Home.vue'),
+  },
+  {
+    path: '/sales',
+    component: () => import('@/views/Sales.vue'),
+  },
+  {
+    path: '/products',
+    component: () => import('@/views/Products.vue'),
+  },
+]
+
+const router = new VueRouter({
+  base: BASE_URL,
+  mode: 'history',
+  routes,
+})
+
+export default router
