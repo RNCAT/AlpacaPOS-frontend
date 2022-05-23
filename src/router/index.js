@@ -22,6 +22,10 @@ const routes = [
     path: '/products',
     component: () => import('@/views/Products.vue'),
   },
+  {
+    path: '/categories',
+    component: () => import('@/views/Categories.vue'),
+  },
 ]
 
 const router = new VueRouter({
