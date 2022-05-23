@@ -30,6 +30,10 @@ const routes = [
     path: '/members',
     component: () => import('@/views/Members.vue'),
   },
+  {
+    path: '/employees',
+    component: () => import('@/views/Employees.vue'),
+  },
 ]
 
 const router = new VueRouter({
