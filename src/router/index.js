@@ -26,6 +26,10 @@ const routes = [
     path: '/categories',
     component: () => import('@/views/Categories.vue'),
   },
+  {
+    path: '/members',
+    component: () => import('@/views/Members.vue'),
+  },
 ]
 
 const router = new VueRouter({
