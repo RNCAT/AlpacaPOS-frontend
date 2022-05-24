@@ -18,7 +18,7 @@
 import Card from '@/components/dashboard/Card.vue'
 
 export default {
-  name: 'HomePage',
+  name: 'DashboardPage',
   components: {
     Card,
   },
