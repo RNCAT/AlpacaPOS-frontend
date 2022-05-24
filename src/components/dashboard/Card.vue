@@ -4,7 +4,7 @@
       <p class="card-header-title">{{ body.title }}</p>
     </header>
     <div class="card-content">
-      <p class="title">{{ body.value }}</p>
+      <p class="title has-text-centered">{{ body.value }}</p>
     </div>
   </div>
 </template>

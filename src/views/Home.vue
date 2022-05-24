@@ -2,13 +2,13 @@
   <div class="container">
     <div class="columns">
       <div class="column">
-        <Card :body="body" />
+        <Card :body="dailySell" />
       </div>
       <div class="column">
-        <Card :body="body" />
+        <Card :body="bestSeller" />
       </div>
       <div class="column">
-        <Card :body="body" />
+        <Card :body="totalSell" />
       </div>
     </div>
   </div>
@@ -24,13 +24,46 @@ export default {
   },
   data() {
     return {
-      body: {
-        title: 'แมว',
-        value: 'อัลปาก้า',
+      dailySell: {
+        title: 'ยอดขายรายวัน',
+        value: '',
       },
+      totalSell: {
+        title: 'ยอดขายทั้งหมด',
+        value: '',
+      },
+      bestSeller: {
+        title: 'สินค้าขายดี',
+        value: '',
+      },
+
+      today: null,
     }
   },
 
-  async mounted() {},
+  methods: {
+    async getDailySell() {
+      const { data } = await this.$http.post('/reports/dailysell', { date: this.today })
+      this.dailySell.value = `${data.total} บาท`
+    },
+
+    async getTotalSell() {
+      const { data } = await this.$http.get('/reports/totalsell')
+      this.totalSell.value = `${data.total} บาท`
+    },
+
+    async getDailyBestSeller() {
+      const { data } = await this.$http.post('/reports/dailybestseller', { date: this.today })
+      this.bestSeller.value = data.product.name
+    },
+  },
+
+  async mounted() {
+    this.today = new Date().toJSON()
+
+    await this.getDailySell()
+    await this.getTotalSell()
+    await this.getDailyBestSeller()
+  },
 }
 </script>
