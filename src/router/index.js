@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/Home.vue'),
+    component: () => import('@/views/Dashboard.vue'),
   },
   {
     path: '/sales',
