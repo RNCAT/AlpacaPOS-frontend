@@ -34,7 +34,7 @@ export default {
       },
       bestSeller: {
         title: 'สินค้าขายดี',
-        value: '',
+        value: 'ยังไม่มี',
       },
 
       today: null,
