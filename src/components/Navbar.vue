@@ -21,6 +21,10 @@
         <i class="fas fa-truck-loading" />
         สต็อก
       </b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ path: '/reports' }">
+        <i class="fas fa-book" />
+        รายงาน
+      </b-navbar-item>
       <b-navbar-dropdown label="จัดการ">
         <b-navbar-item tag="router-link" :to="{ path: '/products' }">
           <i class="fas fa-boxes" />
@@ -37,24 +41,6 @@
         <b-navbar-item tag="router-link" :to="{ path: '/employees' }">
           <i class="fas fa-user-tie" />
           พนักงาน
-        </b-navbar-item>
-      </b-navbar-dropdown>
-      <b-navbar-dropdown label="รายงาน">
-        <b-navbar-item tag="router-link" :to="{ path: '/report-stock-import' }">
-          <i class="fas fa-box-open" />
-          การนำเข้าสินค้า
-        </b-navbar-item>
-        <b-navbar-item tag="router-link" :to="{ path: '/report-sales' }">
-          <i class="fas fa-money-bill" />
-          การขาย
-        </b-navbar-item>
-        <b-navbar-item tag="router-link" :to="{ path: '/report-stocks' }">
-          <i class="fas fa-boxes" />
-          สต็อก
-        </b-navbar-item>
-        <b-navbar-item tag="router-link" :to="{ path: '/report-best-seller' }">
-          <i class="fas fa-chart-line" />
-          สินค้าขายดี
         </b-navbar-item>
       </b-navbar-dropdown>
     </template>
