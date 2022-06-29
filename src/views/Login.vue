@@ -6,34 +6,53 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">ระบบขายหน้าร้านบนเว็บแอปพลิเคชัน</p>
-            <button class="card-header-icon" aria-label="more options">
-              <span class="icon">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-            </button>
           </header>
           <div class="card-content">
             <b-field label="อีเมล">
-              <b-input value="johnsilver" maxlength="30"></b-input>
+              <b-input placeholder="emp@gmail.com" type="email" required v-model="user.email"></b-input>
             </b-field>
 
             <b-field label="รหัสผ่าน">
-              <b-input value="123" type="password" maxlength="30"></b-input>
+              <b-input placeholder="password" type="password" required v-model="user.password"></b-input>
             </b-field>
-
+            <br />
             <b-field>
-              <b-button type="is-primary" expanded>เข้าสู่ระบบ</b-button>
+              <b-button type="is-success" expanded @click="login" :disabled="!user.email || !user.password"
+                >เข้าสู่ระบบ</b-button
+              >
             </b-field>
           </div>
         </div>
       </div>
-      <div class="column">Third column</div>
+      <div class="column"></div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'Login',
+  data() {
+    return {
+      user: {
+        email: null,
+        password: null,
+      },
+    }
+  },
+  methods: {
+    async login() {
+      console.log('logged in!')
+
+      await this.$store.dispatch('employee', { data: 'test' })
+      this.$router.push('/')
+    },
+  },
+}
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  margin-top: 10%;
+}
+</style>

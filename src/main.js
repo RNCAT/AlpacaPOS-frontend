@@ -6,6 +6,7 @@ import 'buefy/dist/buefy.css'
 
 import App from '@/App.vue'
 import router from '@/router'
+import store from './store/index'
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL
 
@@ -32,6 +33,7 @@ Vue.config.productionTip = false
 
 const app = new Vue({
   router,
+  store,
   render: (h) => h(App),
 })
 

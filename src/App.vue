@@ -1,17 +1,31 @@
 <template>
   <div>
-    <Navbar /><br />
+    <NavbarAdmin v-if="this.$store.state.admin" />
+    <NavbarEmployee v-if="this.$store.state.employee" /><br />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
+import NavbarAdmin from '@/components/NavbarAdmin.vue'
+import NavbarEmployee from '@/components/NavbarEmployee.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'App',
   components: {
-    Navbar,
+    NavbarAdmin,
+    NavbarEmployee,
+  },
+
+  computed: {
+    ...mapGetters(['admin', 'employee']),
+  },
+
+  async created() {
+    if (!this.$store.state.admin || !this.$store.state.employee) {
+      this.$router.push('/login')
+    }
   },
 }
 </script>

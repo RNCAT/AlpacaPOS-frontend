@@ -47,12 +47,7 @@
 
     <template #end>
       <b-navbar-item tag="div">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light"> Log in </a>
-        </div>
+        <a class="button is-danger" @click="logout"> ออกจากระบบ</a>
       </b-navbar-item>
     </template>
   </b-navbar>
@@ -60,7 +55,13 @@
 
 <script>
 export default {
-  name: 'Navbar',
+  name: 'NavbarAdmin',
+  methods: {
+    async logout() {
+      await this.$store.dispatch('admin', null)
+      this.$router.push('/login')
+    },
+  },
 }
 </script>
 
