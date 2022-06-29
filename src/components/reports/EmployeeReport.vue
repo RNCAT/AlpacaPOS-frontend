@@ -64,8 +64,7 @@ export default {
 
   methods: {
     getemployeeSell() {
-      console.log(this.employeeId)
-      this.$emit('getEmployee:sell', 1)
+      this.$emit('getEmployee:sell', this.employeeId)
     },
   },
 }

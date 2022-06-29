@@ -70,13 +70,11 @@ export default {
     async getemployeeSell(employeeId) {
       const { data } = await this.$http.post('/reports/employeesell', { employeeId })
       this.employeeSell = data
-      console.log(this.employeeSell)
     },
 
     async getMonthlySell(selectDate) {
       const { data } = await this.$http.post('/reports/sellbymonth', { date: selectDate.toJSON() })
       this.monthlySell = data
-      console.log(this.monthlySell)
     },
   },
 
