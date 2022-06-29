@@ -54,7 +54,7 @@ export default {
 
     async getDailyBestSeller() {
       const { data } = await this.$http.post('/reports/dailybestseller', { date: this.today })
-      this.bestSeller.value = data.product.name
+      this.bestSeller.value = data.product?.name || 'ยังไม่มี'
     },
   },
 
