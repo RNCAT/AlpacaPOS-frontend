@@ -81,8 +81,16 @@ export default {
       order: {
         orderDetails: [],
         memberId: 0,
-        userId: 1,
+        userId: null,
       },
+    }
+  },
+
+  async mounted() {
+    if (this.$store.state.admin) {
+      this.order.userId = this.$store.state.admin.data.id
+    } else if (this.$store.state.employee) {
+      this.order.userId = this.$store.state.employee.data.id
     }
   },
 

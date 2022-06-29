@@ -47,7 +47,10 @@
 
     <template #end>
       <b-navbar-item tag="div">
-        <a class="button is-danger" @click="logout"> ออกจากระบบ</a>
+        <div class="buttons">
+          <b>{{ $store.state.admin.data.firstname }} {{ $store.state.admin.data.lastname }}</b>
+          <a class="button is-danger" @click="logout"> ออกจากระบบ</a>
+        </div>
       </b-navbar-item>
     </template>
   </b-navbar>
@@ -58,7 +61,10 @@ export default {
   name: 'NavbarAdmin',
   methods: {
     async logout() {
+      await this.$http.get('/auth/logout', { withCredentials: true })
+
       await this.$store.dispatch('admin', null)
+
       this.$router.push('/login')
     },
   },
@@ -68,5 +74,9 @@ export default {
 <style scoped>
 i {
   margin-right: 5px;
+}
+
+a {
+  margin-left: 20px;
 }
 </style>
