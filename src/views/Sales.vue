@@ -13,13 +13,7 @@
           @add:order="addOrder"
           @show:payment="showPayment"
         />
-        <Payment
-          v-else
-          :order="latestOrder"
-          :cartsData="cartsData"
-          @payment:order="makePayment"
-          @cancel:order="makeCancel"
-        />
+        <Payment v-else :order="latestOrder" :total="total" @payment:order="makePayment" @cancel:order="makeCancel" />
         <VueHtml2pdf
           :show-layout="false"
           :float-layout="true"
@@ -65,6 +59,7 @@ export default {
       cartsData: [],
       isNotPayment: true,
       latestOrder: null,
+      total: 0,
       isSuccessPayment: false,
       printData: null,
     }
@@ -144,6 +139,7 @@ export default {
       try {
         const { data } = await this.$http.post('/orders', order)
         this.showPayment(data)
+        this.total = data.total
 
         this.$sendSuccess('เพิ่มออร์เดอร์สำเร็จ')
       } catch (error) {

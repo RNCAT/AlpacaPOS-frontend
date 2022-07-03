@@ -27,9 +27,7 @@
           >
             ชำระเงิน
           </b-button>
-          <b-button type="is-danger" icon-left="ban" size="is-medium" expanded @click="makeCancel">
-            ยกเลิก
-          </b-button>
+          <b-button type="is-danger" icon-left="ban" size="is-medium" expanded @click="makeCancel"> ยกเลิก </b-button>
         </div>
       </b-field>
     </div>
@@ -44,15 +42,15 @@ export default {
       type: Object,
       required: true,
     },
-    cartsData: {
-      type: Array,
+
+    total: {
+      type: Number,
       required: true,
     },
   },
 
   data() {
     return {
-      total: 0,
       paid: 0,
       change: 0,
       printOrder: null,
@@ -73,12 +71,6 @@ export default {
     async makeCancel() {
       this.$emit('cancel:order', this.order)
     },
-  },
-
-  mounted() {
-    for (const i of this.cartsData) {
-      this.total += i.total
-    }
   },
 }
 </script>
