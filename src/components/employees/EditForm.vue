@@ -10,12 +10,7 @@
       </b-field>
 
       <b-field label="อีเมล" horizontal>
-        <b-input
-          type="email"
-          placeholder="employee@gmail.com"
-          v-model="employee.email"
-          required
-        ></b-input>
+        <b-input type="email" placeholder="employee@gmail.com" v-model="employee.email" required></b-input>
       </b-field>
 
       <b-field label="รหัสผ่าน" horizontal>
@@ -35,6 +30,7 @@
           type="tel"
           placeholder="0629989464"
           pattern="[0-9]{10}"
+          maxlength="10"
           v-model="employee.phone"
           required
         ></b-input>
@@ -46,11 +42,7 @@
           icon-left="pen"
           @click="editEmployee"
           :disabled="
-            !employee.email ||
-            !employee.password ||
-            !employee.firstname ||
-            !employee.lastname ||
-            !employee.phone
+            !employee.email || !employee.password || !employee.firstname || !employee.lastname || !employee.phone
           "
         >
           แก้ไขพนักงาน

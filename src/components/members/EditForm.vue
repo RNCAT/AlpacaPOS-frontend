@@ -10,12 +10,7 @@
       </b-field>
 
       <b-field label="อีเมล" horizontal>
-        <b-input
-          type="email"
-          placeholder="member@gmail.com"
-          v-model="member.email"
-          required
-        ></b-input>
+        <b-input type="email" placeholder="member@gmail.com" v-model="member.email" required></b-input>
       </b-field>
 
       <b-field label="ชื่อ" horizontal>
@@ -30,6 +25,7 @@
         <b-input
           type="tel"
           placeholder="0629989464"
+          maxlength="10"
           pattern="[0-9]{10}"
           v-model="member.phone"
           required

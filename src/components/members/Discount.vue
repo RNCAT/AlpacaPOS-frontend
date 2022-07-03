@@ -9,7 +9,7 @@
       </b-field>
 
       <b-field horizontal>
-        <b-button type="is-warning" icon-left="pen" :disabled="discount" @click="editDiscount"> แก้ไขส่วนลด </b-button>
+        <b-button type="is-warning" icon-left="pen" :disabled="!discount" @click="editDiscount"> แก้ไขส่วนลด </b-button>
       </b-field>
     </div>
   </div>

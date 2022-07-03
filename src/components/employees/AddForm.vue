@@ -1,12 +1,7 @@
 <template>
   <b-collapse class="card" animation="slide" :open="isEdit">
     <template #trigger="props">
-      <div
-        class="card-header"
-        role="button"
-        aria-controls="contentIdForA11y3"
-        :aria-expanded="props.open"
-      >
+      <div class="card-header" role="button" aria-controls="contentIdForA11y3" :aria-expanded="props.open">
         <p class="card-header-title">เพิ่มพนักงาน</p>
         <a class="card-header-icon">
           <b-icon :icon="props.open ? 'angle-down' : 'angle-up'"> </b-icon>
@@ -16,16 +11,11 @@
 
     <div class="card-content">
       <b-field label="อีเมล" horizontal>
-        <b-input
-          type="email"
-          placeholder="emp@gmail.com"
-          v-model="employee.email"
-          required
-        ></b-input>
+        <b-input type="email" placeholder="emp@gmail.com" v-model="employee.email" required></b-input>
       </b-field>
 
       <b-field label="รหัสผ่าน" horizontal>
-        <b-input type="text" v-model="employee.password" required></b-input>
+        <b-input type="password" v-model="employee.password" required></b-input>
       </b-field>
 
       <b-field label="ชื่อ" horizontal>
@@ -53,11 +43,7 @@
           icon-left="plus"
           @click="addEmployee"
           :disabled="
-            !employee.email ||
-            !employee.password ||
-            !employee.firstname ||
-            !employee.lastname ||
-            !employee.phone
+            !employee.email || !employee.password || !employee.firstname || !employee.lastname || !employee.phone
           "
         >
           เพิ่มพนักงาน
