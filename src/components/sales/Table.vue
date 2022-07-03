@@ -6,14 +6,14 @@
           {{ props.row.name }}
         </b-table-column>
 
-        <b-table-column field="price" label="ราคา" sortable v-slot="props">
-          {{ props.row.price }} ฿
+        <b-table-column field="quantity" label="จำนวนคงเหลือ" sortable v-slot="props">
+          {{ props.row.quantity }}
         </b-table-column>
 
+        <b-table-column field="price" label="ราคา" sortable v-slot="props"> {{ props.row.price }} ฿ </b-table-column>
+
         <b-table-column v-slot="props">
-          <b-button type="is-success" icon-left="cart-plus" @click="addToCart(props.row)" expanded
-            >เพิ่ม</b-button
-          >
+          <b-button type="is-success" icon-left="cart-plus" @click="addToCart(props.row)" expanded>เพิ่ม</b-button>
         </b-table-column>
 
         <template #empty>
@@ -35,10 +35,6 @@ export default {
       type: Array,
       required: true,
     },
-  },
-
-  data() {
-    return {}
   },
 
   methods: {

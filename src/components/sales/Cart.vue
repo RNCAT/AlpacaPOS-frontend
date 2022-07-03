@@ -73,6 +73,10 @@ export default {
     products: {
       type: Array,
     },
+    cartsData: {
+      type: Array,
+      required: true,
+    },
   },
 
   data() {
@@ -123,8 +127,6 @@ export default {
       }
 
       this.$emit('add:order', this.order)
-
-      this.order = null
     },
 
     getName(id) {

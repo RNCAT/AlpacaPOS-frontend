@@ -2,13 +2,14 @@
   <div class="container">
     <div class="columns">
       <div class="column is-half">
-        <Table :products="products" @add:cart="addToCart" />
+        <Table :products="cartsData" @add:cart="addToCart" />
       </div>
       <div class="column">
         <Cart
           v-if="isNotPayment"
           :carts="carts"
           :products="products"
+          :cartsData="cartsData"
           :members="members"
           @add:order="addOrder"
           @show:payment="showPayment"
@@ -62,6 +63,7 @@ export default {
       total: 0,
       isSuccessPayment: false,
       printData: null,
+      STABLE_PRODUCTS: null,
     }
   },
 
@@ -69,6 +71,7 @@ export default {
     async getProducts() {
       const { data } = await this.$http.get('/products')
       this.products = data.filter((product) => product.quantity > 0)
+      this.cartsData = this.products
     },
 
     async getMembers() {
@@ -95,8 +98,6 @@ export default {
         this.carts.push(productCart)
 
         cartData.total += cartData.price
-
-        this.cartsData.push(cartData)
       } else {
         this.checkCart(productCart, cartData)
       }
@@ -114,21 +115,6 @@ export default {
       if (isNotFound) {
         this.carts.push(product)
       }
-
-      isNotFound = true
-      for (const i in this.cartsData) {
-        if (cartData.productId === this.cartsData[i].productId) {
-          isNotFound = false
-          this.cartsData[i].quantity += 1
-          this.cartsData[i].total += cartData.price
-          break
-        }
-      }
-
-      if (isNotFound) {
-        cartData.total += cartData.price
-        this.cartsData.push(cartData)
-      }
     },
 
     clearCart() {
@@ -137,13 +123,22 @@ export default {
 
     async addOrder(order) {
       try {
+        for (const i in order.orderDetails) {
+          for (const j in this.STABLE_PRODUCTS) {
+            if (order.orderDetails[i].productId === this.STABLE_PRODUCTS[j].id) {
+              if (order.orderDetails[i].quantity > this.STABLE_PRODUCTS[j].quantity) {
+                throw new Error('ไม่สามารถซื้อสินค้ามากกว่าจำนวนสต็อกได้!')
+              }
+            }
+          }
+        }
         const { data } = await this.$http.post('/orders', order)
         this.showPayment(data)
         this.total = data.total
 
         this.$sendSuccess('เพิ่มออร์เดอร์สำเร็จ')
       } catch (error) {
-        this.$sendDanger('มีข้อผิดพลาดบางอย่าง')
+        this.$sendDanger(error.message)
       }
     },
 
@@ -165,6 +160,8 @@ export default {
         await this.$refs.html2Pdf.generatePdf()
 
         this.clearCart()
+
+        await this.getProducts()
 
         this.$sendSuccess('ชำระเงินสำเร็จ')
       } catch (error) {
@@ -190,6 +187,9 @@ export default {
   async mounted() {
     await this.getProducts()
     await this.getMembers()
+
+    const { data } = await this.$http.get('/products')
+    this.STABLE_PRODUCTS = data
   },
 }
 </script>
